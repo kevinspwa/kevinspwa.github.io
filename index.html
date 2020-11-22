@@ -1,39 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejemplo de PWA</title>
-    <script src="js/registraServiceWorker.js"></script>
-
-    <!-- Ícono para la página web. Debe ponerse en la raíz de la página. -->
-    <link rel="icon" sizes="32x32" href="favicon.ico">
-
-    <!-- Color de la barra de navegación de Chrome en dispositivos móviles. -->
-    <meta name="theme-color" content="#81d4f4">
-
-    <!-- Configuración de la PWA: Chrome y Edge. -->
-    <link rel="manifest" href="manifest.json">
-
-    <!-- Configuración para Web Clip en Safari. -->
-    <meta name="apple-mobile-web-app-title" content="kevinspwa">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="apple-touch-icon" href="img/icono2048.png">
-    <link rel="apple-touch-icon" sizes="256x256" href="img/icono256.png">
-    <link rel="apple-touch-icon" sizes="1024x1024" href="img/icono1024.png">
-    <link rel="apple-touch-icon" sizes="2048x2048" href="img/icono2048.png">
-
-    <script type="module" src="cmp/mi-footer.js"></script>
-    <link rel="stylesheet" href="css/estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con 2 botones</title>
+  </head>
   <body>
-    <h1>Ejemplo de PWA</h1>
-    <p>Hola</p>
-    <footer>
+    <form action=javascript:calculaSuma();>
+      <h1>Formulario con 2 botones</h1>
       <p>
-        <mi-footer></mi-footer>
+        <label>
+          a
+          <input id=inA type=number required min="0.1" max="100" step="0.1">
+        </label>
       </p>
-    </footer>
+      <p>
+        <label>
+          b
+          <input id=inB type=number required min="0.1" max="100" step="0.1">
+        </label>
+      </p>
+      <p>
+        <button>Sumar</button>
+        <button formaction="javascript:calculaResta();">Restar</button>
+      </p>
+      <p><output id=outResultado></output></p>
+    </form>
+    <footer><p>Copyright &copy; 2020 Gilberto Pacheco Gallegos.</p></footer>
+    <script>
+      function calculaSuma() {
+        /* Recupera el número capturado en "inBase" y lo asigna a la
+         * constante "base". */
+        const a = inA.valueAsNumber;
+        const b = inB.valueAsNumber;
+        const suma = a + b;
+        outResultado.value = `La suma es: ${suma}.`;
+      }
+      function calculaResta() {
+        const a = inA.valueAsNumber;
+        const b = inB.valueAsNumber;
+        const resta = a - b;
+        outResultado.value = `La resta es: ${resta}.`;
+      }
+    </script>
   </body>
 </html>
 
