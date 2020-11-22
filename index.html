@@ -222,6 +222,31 @@
         color: var(--color-control-error);
       }
     </style>
+    <script>
+      class CampoDinámico extends HTMLElement {
+        connectedCallback() {
+          this.ganaFoco = this.ganaFoco.bind(this);
+          this.pierdeFoco = this.pierdeFoco.bind(this);
+          this.addEventListener("focus", this.ganaFoco, true);
+          this.addEventListener("focusout", this.pierdeFoco, true);
+        }
+        get control() {
+          return this.querySelector("input,textarea,select");
+        }
+        ganaFoco() {
+          this.control.classList.remove("control_sin_foco");
+        }
+        pierdeFoco() {
+          const control = this.control;
+          if (control.value.length === 0) {
+            control.classList.remove("control_sin_foco");
+          } else {
+            control.classList.add("control_sin_foco");
+          }
+        }
+      }
+      customElements.define("campo-dinámico", CampoDinámico);
+    </script>
   </head>
   <body>
     <form action=javascript:calculaDensi();>
